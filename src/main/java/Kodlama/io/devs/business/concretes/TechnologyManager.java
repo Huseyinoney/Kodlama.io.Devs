@@ -3,6 +3,7 @@ package Kodlama.io.devs.business.concretes;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Kodlama.io.devs.business.abstracts.TechnologyService;
@@ -21,7 +22,7 @@ public class TechnologyManager implements TechnologyService {
 	private TechnologyRepository technologyRepository;
 	private LanguageRepository languageRepository;
 	
-	
+	@Autowired
 	public TechnologyManager(TechnologyRepository technologyRepository, LanguageRepository languageRepository) {
 		super();
 		this.technologyRepository = technologyRepository;
@@ -31,21 +32,20 @@ public class TechnologyManager implements TechnologyService {
 	@Override
 	public List<GetAllTechnologyResponse> getAll() {
 		
-		List<Technology> languageTechnologies=technologyRepository.findAll();
-		List<GetAllTechnologyResponse> technologyResponse=new ArrayList<GetAllTechnologyResponse>();
+		List<Technology> technologies = technologyRepository.findAll();
+		List<GetAllTechnologyResponse> technologyResponses = new ArrayList<GetAllTechnologyResponse>();
 		
-		for(Technology technology : languageTechnologies ) {
-			
+		for(Technology technology : technologies) {
 			GetAllTechnologyResponse responseItem = new GetAllTechnologyResponse();
+			
 			responseItem.setId(technology.getTechnologyId());
-			responseItem.setLanguageName(technology.getLanguage().getName());
 			responseItem.setTechnologyName(technology.getTechnologyName());
-			technologyResponse.add(responseItem);
-			
-			
+			responseItem.setLanguageName(technology.getLanguage().getName());
+			technologyResponses.add(responseItem);
 		}
-		return technologyResponse;
+		return technologyResponses;
 	}
+	
 
 	@Override
 	public void add(CreateTechnologyRequest createTechnologyRequest) throws Exception {

@@ -12,4 +12,5 @@ public class GetAllTechnologyResponse {
 	private int id;
 	private String technologyName;
 	private String languageName;
+	
 }

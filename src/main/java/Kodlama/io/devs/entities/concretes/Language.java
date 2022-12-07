@@ -29,7 +29,7 @@ public class Language {
 		@Column(name = "name")
 		private String name;
 		
-		@OneToMany
+		@OneToMany(mappedBy = "language")
 		private List<Technology> technologies;
 		
 }

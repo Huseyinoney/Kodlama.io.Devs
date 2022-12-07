@@ -2,6 +2,7 @@ package Kodlama.io.devs.webApi;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ import Kodlama.io.devs.business.responses.GetAllTechnologyResponse;
 public class TechnologyController {
 	
 	private TechnologyService technologyService;
-
+	@Autowired
 	public TechnologyController(TechnologyService technologyService) {
 		super();
 		this.technologyService = technologyService;
@@ -34,19 +35,19 @@ public class TechnologyController {
 
 	
 	 @PostMapping("/add")
-	    public void create(@RequestBody CreateTechnologyRequest createTechnologyRequest) throws Exception {
+	    public void create(@RequestBody() CreateTechnologyRequest createTechnologyRequest) throws Exception {
 	        technologyService.add(createTechnologyRequest);
 	}
 	 
 	 
 	 @PutMapping("/update")
-	    public void update(@RequestBody UpdateTechnologyRequest updateTechnologyRequest) throws Exception {
+	    public void update(@RequestBody() UpdateTechnologyRequest updateTechnologyRequest) throws Exception {
 	        technologyService.update(updateTechnologyRequest);
 	    }
 	 
 	 
 	 @DeleteMapping("/id")
-	    public void delete(@RequestBody DeleteTechnologyRequest deleteTechnologyRequest) throws Exception {
+	    public void delete(@RequestBody() DeleteTechnologyRequest deleteTechnologyRequest) throws Exception {
 	        technologyService.delete(deleteTechnologyRequest);
 	    }
 	 

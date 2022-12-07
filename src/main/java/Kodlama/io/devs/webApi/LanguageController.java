@@ -1,7 +1,6 @@
 package Kodlama.io.devs.webApi;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,10 +35,13 @@ public class LanguageController {
 	        return languageService.getAll();
 	    }
 	
-	 @GetMapping("/{id}")
-	    public Optional<Language> getById(@PathVariable() int id) throws Exception{
-	        return languageService.getById(id);
-	    }
+		
+		  @GetMapping("/{id}") 
+		  public Language getById(@PathVariable("id")int id) throws Exception {
+			  return languageService.getById(id);
+		  }
+			
+		 
 	 
 	 @PostMapping("/add")
 	    public void create(@RequestBody CreateLanguageRequest createLanguageRequest) throws Exception {
